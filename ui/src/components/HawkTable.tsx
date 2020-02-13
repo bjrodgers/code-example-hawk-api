@@ -40,7 +40,7 @@ class HawkTable extends Component<HawkTableProps> {
 }
 
 function _renderHawkRow(hawk:IHawk) {
-  return <tr className='data-row' key='{hawk.id}'>
+  return <tr className='data-row' key={hawk.id}>
     <td>{hawk.name}</td>
     <td>{hawk.size}</td>
     <td>{hawk.gender}</td>
