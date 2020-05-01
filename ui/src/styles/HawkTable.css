@@ -6,13 +6,13 @@
 }
 
 .header-row th {
+    border-bottom: 1px solid #aaaaaa;
     text-align: left;
     padding: .4rem;
 }
 
 .data-row td {
-    border: 1px solid #888888;
-    border-radius: .4rem;
+    border-bottom: 1px solid #dddddd;
     padding: .4rem;
-    color: blue;
+    color: #080808;
 }

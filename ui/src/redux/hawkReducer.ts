@@ -1,6 +1,15 @@
-import IAppState, { initialState } from "../models/IAppState";
 import { AnyAction } from "redux";
+import IAppState from "../models/IAppState";
+import IHawk from "../models/IHawk";
 import { ActionTypes } from "./hawkActions";
+
+const initialState: IAppState = {
+  filter: '',
+  hawks: [],
+  isLoadingHawk: false,
+  isLoadingList: false,
+  selectedHawk: {} as IHawk
+};
 
 export default function hawkReducer(state = initialState, action: AnyAction): IAppState {
   console.log(action);

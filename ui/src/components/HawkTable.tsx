@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
-import './HawkTable.css';
+import React, { Component, ReactElement } from 'react';
+import { connect } from 'react-redux';
 import IAppState from '../models/IAppState';
 import IHawk from '../models/IHawk';
-import { connect } from 'react-redux';
+import '../styles/HawkTable.css';
 
 type HawkTableProps = {
   hawks: IHawk[]
 }
 
 class HawkTable extends Component<HawkTableProps> {
-  constructor(props:HawkTableProps) {
-    super(props);
-    console.log('HawkTable::constructor')
-  }
-
   static defaultProps:HawkTableProps = {
     hawks: []
   }
 
-  render() {
-    console.log('HawkTable::render');
+  static mapStateToProps(store: IAppState, ownProps: HawkTableProps) {
+    return {
+      hawks: store.hawks,
+      ...ownProps
+    };
+  }
 
-    let hawkRows = this.props.hawks.map(_renderHawkRow);
+  constructor(props:HawkTableProps) {
+    super(props);
+  }
+
+  render():any {
+    let hawkRows = this.props.hawks.map(this._renderHawkRow);
 
     return <table className='hawk-table'>
     <thead>
@@ -37,22 +41,15 @@ class HawkTable extends Component<HawkTableProps> {
     </tbody>
   </table>
   }
+
+  _renderHawkRow(hawk:IHawk): ReactElement {
+    return <tr className='data-row' key={hawk.id}>
+      <td>{hawk.name}</td>
+      <td>{hawk.size}</td>
+      <td>{hawk.gender}</td>
+      <td>View</td>
+    </tr>;
+  }
 }
 
-function _renderHawkRow(hawk:IHawk) {
-  return <tr className='data-row' key={hawk.id}>
-    <td>{hawk.name}</td>
-    <td>{hawk.size}</td>
-    <td>{hawk.gender}</td>
-    <td>View</td>
-  </tr>;
-}
-
-function mapStateToProps(store: IAppState, ownProps: HawkTableProps) {
-  return {
-    hawks: store.hawks,
-    ...ownProps
-  };
-};
-
-export default connect(mapStateToProps)(HawkTable);
+export default connect(HawkTable.mapStateToProps)(HawkTable);

@@ -1,5 +1,8 @@
-import IHawk from '../models/IHawk';
 import { loadAllHawks, saveHawk } from '../api/hawkService';
+import IHawk from '../models/IHawk';
+import { ThunkDispatch } from 'redux-thunk';
+import IAppState from '../models/IAppState';
+import { Action } from 'redux';
 
 export enum ActionTypes {
     LOADING_HAWKS = 'LOADING_HAWKS',
@@ -10,7 +13,7 @@ export enum ActionTypes {
 }
 
 export function loadHawksAction() {
-    return async (dispatch: any) => {
+    return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
         dispatch({ type: ActionTypes.LOADING_HAWKS, payload: true});
 
         try {
@@ -26,7 +29,7 @@ export function loadHawksAction() {
 }
 
 export function saveHawkAction(hawk:IHawk) {
-    return async (dispatch: any) => {
+    return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
         dispatch({type: ActionTypes.SAVING_HAWK, payload: hawk});
         try {
             await saveHawk(hawk);

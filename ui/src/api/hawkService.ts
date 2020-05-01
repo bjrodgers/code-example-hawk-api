@@ -17,13 +17,27 @@ export async function loadAllHawks():Promise<IHawk[]> {
 export async function saveHawk(hawk:IHawk):Promise<void> {
     const url:string = SERVICE_URL+'/api/hawk';
 
-    // Create the POST Request
-    var request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.setRequestHeader('Content-Type', 'application/json');
+    let requestInit:RequestInit = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(hawk)
+    }
 
-    // Send the request
-    await request.send(JSON.stringify(hawk));
+    let response:Response = await fetch(url, requestInit);
+
+    if (response.status != 200) {
+        console.error(response.statusText);
+    }
+
+    // // Create the POST Request
+    // var request = new XMLHttpRequest();
+    // request.open('POST', url, true);
+    // request.setRequestHeader('Content-Type', 'application/json');
+
+    // // Send the request
+    // await request.send(JSON.stringify(hawk));
 }
 
 /// Update the provided hawk

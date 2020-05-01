@@ -15,3 +15,20 @@ export default interface IHawk {
     wingspanBegin: number;
     wingspanEnd: number;
 }
+
+export const emptyHawk:IHawk = {
+    behaviorDescription: '',
+    colorDescription: '',
+    gender: '',
+    habitatDescription: '',
+    id: 0,
+    lengthBegin: 0,
+    lengthEnd: 0,
+    name: '',
+    pictureUrl: '',
+    size: '',
+    weightBegin: 0,
+    weightEnd: 0,
+    wingspanBegin: 0,
+    wingspanEnd: 0,
+}

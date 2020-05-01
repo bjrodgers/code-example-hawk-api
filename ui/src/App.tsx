@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import './App.css';
+import HawkForm from './components/HawkForm';
 import HawkTable from './components/HawkTable';
+import './styles/App.css';
+import './styles/global.css';
 
 type AppProps = {}
 
 export default class App extends Component<AppProps> {
-  static defaultProps = {}
-
   render() {
      return <div className='App v-flex'>
-      <button className='add-hawk-button'>Add Hawk</button>
       <div className='h-flex'>
         <input className='filter-text'></input>
         <button className='filter-button'>Filter</button>
+        <button className='add-hawk-button'>Add Hawk</button>
       </div>
-      <div className='h-flex'>
+      <div className='v-flex'>
         <HawkTable/>
+        <HawkForm/>
       </div>
+
     </div>
   }
 }
-

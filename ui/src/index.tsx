@@ -5,9 +5,9 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import thunk from "redux-thunk";
 import App from './App';
 import './index.css';
+import IAppState from './models/IAppState';
 import { loadHawksAction } from './redux/hawkActions';
 import hawkReducer from './redux/hawkReducer';
-import IAppState from './models/IAppState';
 
 const store:Store<IAppState, any> = createStore(hawkReducer, applyMiddleware(thunk));
 
@@ -17,7 +17,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("root")
 );
-
 
 // let hawk1:IHawk = {
 //     id:2,
